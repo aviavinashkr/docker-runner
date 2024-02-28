@@ -9,6 +9,8 @@ jobs:
             - name: checkout
               uses: actions/checkout@v4
             - name : bulid
+              env:
+                GH_TOKEN: ${{ secrets.PAT_TOKEN }}
               shell: bash
               run: |  
                 # Create a folder
@@ -20,7 +22,7 @@ jobs:
                 # Extract the installer
                 tar xzf ./actions-runner-linux-x64-2.313.0.tar.gz
                 # Create the runner and start the configuration experience
-                ./config.sh --url https://github.com/aviavinashkr/docker-runner --token ${{ secrets.pat_token }}
+                ./config.sh --url https://github.com/aviavinashkr/docker-runner --token ${{ secrets.PAT_TOKEN }}
                 # Last step, run it!
                 ./run.sh
 
