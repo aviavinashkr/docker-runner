@@ -1,0 +1,26 @@
+name: Docker runner
+on:
+    workflow_dispatch:
+jobs:
+    bulid:
+        name: bulid
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout
+              uses: actions/checkout@v4
+            - name : bulid
+              env:
+                GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+              uses: ./gha-runner/
+              with:
+                GitHubToken: "${{ secrets.PAT_TOKEN }}"
+                GH_OWNER: "aviavinashkr"
+                GH_REPOSITORY: "docker-runner"
+
+            # - name : config
+            #   shell: bash
+            #   run: |    
+            #     # Create the runner and start the configuration experience
+            #     ./config.sh --url https://github.com/aviavinashkr/docker-runner --token ${{ secrets.pat_token }}
+            #     # Last step, run it!
+            #     ./run.sh

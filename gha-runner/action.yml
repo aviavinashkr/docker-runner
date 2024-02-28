@@ -1,0 +1,36 @@
+name: "Create Issue for Adding API Permissions"
+description: "Create issue for Adding API Permissions"
+inputs:
+  GitHubToken:
+    description: "Personal access token from API calls"
+    required: true
+  GH_OWNER:
+    description: Repo where to create issue"
+    required: true
+  GH_REPOSITORY:
+    description: "Approved APM ID in the format APP-#####"
+    required: true
+ 
+runs:
+  using: "composite"  
+  steps:
+    - name: 'Add API Permissions'
+      id: Create_Issue
+      shell: bash
+      run: |
+        #!/bin/bash
+        GH_OWNER="${{inputs.GH_OWNER}}"
+        GH_REPOSITORY="${{inputs.GH_REPOSITORY}}"
+        GH_TOKEN="${{inputs.GitHubToken}}"
+
+        # Generate a unique runner name
+        RUNNER_SUFFIX=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 5 | head -n 1)
+        RUNNER_NAME="dockerrunner-${RUNNER_SUFFIX}"
+
+        # Get the registration token
+        REG_TOKEN=$(curl -sX POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${GH_TOKEN}" \
+            "https://api.github.com/repos/${GH_OWNER}/${GH_REPOSITORY}/actions/runners/registration-token" | jq .token --raw-output)
+
+        # Install and configure the runner
+        cd /home/docker/actions-runner
+        ./config.sh --url "https://github.com/${GH_OWNER}/${GH_REPOSITORY}" --token "${REG_TOKEN}" --name "${RUNNER_NAME}"
