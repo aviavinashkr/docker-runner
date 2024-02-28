@@ -4,7 +4,7 @@ on:
 jobs:
     bulid:
         name: bulid
-        runs-on: [utuntu-latest]
+        runs-on: ubuntu-latest
         steps:
             - name: checkout
               uses: actions/checkout@v4
