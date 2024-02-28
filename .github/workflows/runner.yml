@@ -19,11 +19,15 @@ jobs:
                 echo "56910d6628b41f99d9a1c5fe9df54981ad5d8c9e42fc14899dcc177e222e71c4  actions-runner-linux-x64-2.313.0.tar.gz" | shasum -a 256 -c
                 # Extract the installer
                 tar xzf ./actions-runner-linux-x64-2.313.0.tar.gz
-
-            - name : config
-              shell: bash
-              run: |    
                 # Create the runner and start the configuration experience
                 ./config.sh --url https://github.com/aviavinashkr/docker-runner --token ${{ secrets.pat_token }}
                 # Last step, run it!
                 ./run.sh
+
+            # - name : config
+            #   shell: bash
+            #   run: |    
+            #     # Create the runner and start the configuration experience
+            #     ./config.sh --url https://github.com/aviavinashkr/docker-runner --token ${{ secrets.pat_token }}
+            #     # Last step, run it!
+            #     ./run.sh
