@@ -5,10 +5,10 @@ inputs:
     description: "Personal access token from API calls"
     required: true
   GH_OWNER:
-    description: Repo where to create issue"
+    description: "Repo owner"
     required: true
   GH_REPOSITORY:
-    description: "Approved APM ID in the format APP-#####"
+    description: "Repo"
     required: true
  
 runs:
