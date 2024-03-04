@@ -17,10 +17,10 @@ jobs:
                 GH_OWNER: "aviavinashkr"
                 GH_REPOSITORY: "docker-runner"
 
-            # - name : config
-            #   shell: bash
-            #   run: |    
-            #     # Create the runner and start the configuration experience
-            #     ./config.sh --url https://github.com/aviavinashkr/docker-runner --token ${{ secrets.pat_token }}
-            #     # Last step, run it!
-            #     ./run.sh
+            - name : config
+              shell: bash
+              run: |    
+                # Create the runner and start the configuration experience
+                ./config.sh --url https://github.com/aviavinashkr/docker-runner --token ${{ secrets.pat_token }}
+                # Last step, run it!
+                ./run.sh
