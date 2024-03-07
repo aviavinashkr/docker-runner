@@ -22,9 +22,9 @@ jobs:
                 # Extract the installer
                 tar xzf ./actions-runner-linux-x64-2.313.0.tar.gz
                 # git config
-                git config --global user.name "GitHub Action"
+                # git config --global user.name "GitHub Action"
 
-                git config --global user.email "action@github.com"
+                # git config --global user.email "action@github.com"
                 
                 # Create the runner and start the configuration experience
                 ./config.sh --url https://github.com/aviavinashkr/docker-runner --token ${{ secrets.PAT_TOKEN }}
