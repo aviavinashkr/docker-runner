@@ -1,0 +1,19 @@
+name: Mask Example
+on:
+  workflow_dispatch:
+jobs:
+  mask-secret-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate and Mask Secret
+        shell: pwsh
+        run: |
+          $generatedSecret = "my-sensitive-secret"
+          Write-Host "::add-mask::$generatedSecret"
+          Write-Host "This is the secret: $generatedSecret"
+
+      - name: Use Secret
+        shell: pwsh
+        run: |
+          $usedSecret = "my-sensitive-secret"
+          Write-Host "Using the secret: $usedSecret"
